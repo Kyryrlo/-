@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Самостоятельная_x0020_работа.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Самостоятельная_x0020_работаStoreContainer">
+    <EntitySet Name="ArvutitellimusedSet" EntityType="Самостоятельная_x0020_работа.Store.ArvutitellimusedSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkersSet" EntityType="Самостоятельная_x0020_работа.Store.WorkersSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="WorkersArvutitellimused" Association="Самостоятельная_x0020_работа.Store.WorkersArvutitellimused">
+      <End Role="Workers" EntitySet="WorkersSet" />
+      <End Role="Arvutitellimused" EntitySet="ArvutitellimusedSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ArvutitellimusedSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Worker" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kirjeldus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Korpus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kuvar" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Pakitud" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Workers_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkersSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Chernykh_Kyrylo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Oliksii_Rudenkox" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Alexandr_Kondr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Savchenko_Motvii" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Egor_Nedozim" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="WorkersArvutitellimused">
+    <End Role="Workers" Type="Самостоятельная_x0020_работа.Store.WorkersSet" Multiplicity="1" />
+    <End Role="Arvutitellimused" Type="Самостоятельная_x0020_работа.Store.ArvutitellimusedSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Arvutitellimused">
+        <PropertyRef Name="Workers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Самостоятельная_x0020_работа" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Самостоятельная_x0020_работаContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ArvutitellimusedSet" EntityType="Самостоятельная_x0020_работа.Arvutitellimused" />
+          <EntitySet Name="WorkersSet" EntityType="Самостоятельная_x0020_работа.Workers" />
+          <AssociationSet Name="WorkersArvutitellimused" Association="Самостоятельная_x0020_работа.WorkersArvutitellimused">
+            <End Role="Workers" EntitySet="WorkersSet" />
+            <End Role="Arvutitellimused" EntitySet="ArvutitellimusedSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Arvutitellimused">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Worker" Type="String" Nullable="false" />
+          <Property Name="Kirjeldus" Type="String" Nullable="false" />
+          <Property Name="Korpus" Type="String" Nullable="false" />
+          <Property Name="Kuvar" Type="String" Nullable="false" />
+          <Property Name="Pakitud" Type="String" Nullable="false" />
+          <NavigationProperty Name="Workers" Relationship="Самостоятельная_x0020_работа.WorkersArvutitellimused" FromRole="Arvutitellimused" ToRole="Workers" />
+        </EntityType>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Chernykh_Kyrylo" Type="String" Nullable="false" />
+          <Property Name="Oliksii_Rudenkox" Type="String" Nullable="false" />
+          <Property Name="Alexandr_Kondr" Type="String" Nullable="false" />
+          <Property Name="Savchenko_Motvii" Type="String" Nullable="false" />
+          <Property Name="Egor_Nedozim" Type="String" Nullable="false" />
+          <NavigationProperty Name="Arvutitellimused" Relationship="Самостоятельная_x0020_работа.WorkersArvutitellimused" FromRole="Workers" ToRole="Arvutitellimused" />
+        </EntityType>
+        <Association Name="WorkersArvutitellimused">
+          <End Type="Самостоятельная_x0020_работа.Workers" Role="Workers" Multiplicity="1" />
+          <End Type="Самостоятельная_x0020_работа.Arvutitellimused" Role="Arvutitellimused" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Самостоятельная_x0020_работаStoreContainer" CdmEntityContainer="Самостоятельная_x0020_работаContainer">
+    <EntitySetMapping Name="ArvutitellimusedSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Самостоятельная_x0020_работа.Arvutitellimused)">
+        <MappingFragment StoreEntitySet="ArvutitellimusedSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Worker" ColumnName="Worker" />
+          <ScalarProperty Name="Kirjeldus" ColumnName="Kirjeldus" />
+          <ScalarProperty Name="Korpus" ColumnName="Korpus" />
+          <ScalarProperty Name="Kuvar" ColumnName="Kuvar" />
+          <ScalarProperty Name="Pakitud" ColumnName="Pakitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkersSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Самостоятельная_x0020_работа.Workers)">
+        <MappingFragment StoreEntitySet="WorkersSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Chernykh_Kyrylo" ColumnName="Chernykh_Kyrylo" />
+          <ScalarProperty Name="Oliksii_Rudenkox" ColumnName="Oliksii_Rudenkox" />
+          <ScalarProperty Name="Alexandr_Kondr" ColumnName="Alexandr_Kondr" />
+          <ScalarProperty Name="Savchenko_Motvii" ColumnName="Savchenko_Motvii" />
+          <ScalarProperty Name="Egor_Nedozim" ColumnName="Egor_Nedozim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="WorkersArvutitellimused" TypeName="Самостоятельная_x0020_работа.WorkersArvutitellimused" StoreEntitySet="ArvutitellimusedSet">
+      <EndProperty Name="Workers">
+        <ScalarProperty Name="Id" ColumnName="Workers_Id" />
+      </EndProperty>
+      <EndProperty Name="Arvutitellimused">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
